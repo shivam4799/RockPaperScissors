@@ -1,0 +1,172 @@
+<html>
+    <head>
+        <title>
+            ROCK PAPER SCISSORS
+        </title>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Asap:500,700');
+        *{
+            margin: 0%;
+            padding: 0%;  
+            box-sizing: border-box;
+        }
+        body{
+            
+            background: lightslategray;
+        }
+        
+        
+        h1{
+            background: white;
+            padding: 10px;
+            color: black;
+            font-family:asap, sans-serif; 
+            text-align: center;
+            
+     }
+      .score{
+          border: 3px solid white;
+          margin: 20px auto;
+          padding: 10px 20px;
+          color: white;
+          width: 150px;
+          font-size: 30px;
+          border-radius: 10px;
+          font-family:asap, sans-serif; 
+          text-align: center;
+          position: relative;
+      }
+      .badge{
+        background: orange;
+        color: white;
+        font-size: 20px;
+        font-family:asap, sans-serif; 
+      }
+      #user{
+        position: absolute;
+        top: 15px;
+        left: -20px;
+      }
+      #comp{
+        position: absolute;
+        top: 15px;
+        right: -20px;
+      }
+      .p{
+          margin-top: 30px;
+          text-align: center;
+          font-size: 45px;
+          font-family:asap, sans-serif; 
+          color: white;
+      }
+      .choices{
+          
+        text-align: center;
+        display: flex;
+        justify-content: center;
+
+      }
+      
+      .choice{
+          margin: 10px;
+        display: inline-block;
+        border: 10px solid goldenrod;
+        border-radius: 50%;
+        margin-top: 50px ;
+         width: 250px;
+        padding: 10px;
+        transition: 1s;
+        }
+        .choice:hover{
+      cursor: pointer;
+      background:   #444;
+      }
+        img{
+            width: 200px;
+        }
+        
+        #p1{
+        margin-top: 40px;
+          text-align: center;
+          font-size: 25px;
+          font-weight: bold;
+          font-family:asap, sans-serif; 
+          color: white;
+        }
+        </style>
+    </head>
+    <body>
+               <h1>ROCK PAPER SCISSORS</h1>
+           
+        <div class="score">
+        <div id="comp"class="badge">comp</div>
+        <div id="user"class="badge">user</div>
+        <span id="user-score">0</span>:<span id="comp-score">0</span>
+        </div>
+
+        <div id="op" class="p"> </div>
+        <div class="choices">
+            <div id="rock"class="choice">
+                <img src="rock.png">
+            </div>
+            <div id="paper"class="choice">
+                    <img src="paper.png">
+            </div>
+            <div id="scissors"class="choice">
+                    <img src="scissors.png">
+            </div>
+        </div>
+        <p id="p1">Make your move.</p>
+        <script>
+       let comp=0;
+       let user=0;
+       const rock=document.getElementById("rock");
+       const compScore=document.getElementById("comp-score");
+       const op=document.getElementById("op");
+       const userScore=document.getElementById("user-score");
+       const paper=document.getElementById("paper");
+       const scissors=document.getElementById("scissors");
+
+      function compChoice(){
+          const choice=['rock','paper','scissors'];
+          let num=Math.floor(Math.random()*3);
+          return choice[num];
+      }
+
+       function game(args){
+         let cc=compChoice();
+         let uc=args;
+         console.log("c "+cc);
+         console.log("u "+uc);
+         if(cc==uc)
+         {
+             console.log("Draw");
+             op.innerHTML=`Computer : <span style="color:purple"> ${cc} </span> User : <span style="color:purple"> ${uc} </span> = <span style="color:orange"> Match Draw </span>`;
+        }
+         else if(cc=="rock" && uc=="scissors" || cc=="scissors" && uc=="paper"||cc=="paper" && uc=="rock" )
+         {
+             console.log("Computer Win");
+             comp++;
+             compScore.innerHTML=comp;
+             op.innerHTML=`Computer : <span style="color:purple"> ${cc} </span> User : <span style="color:purple"> ${uc} </span> = <span style="color:orange"> Computer Wins </span>`;
+         }
+         else{
+            console.log("User Win");
+            user++;
+            userScore.innerHTML=user;
+            op.innerHTML=`Computer : <span style="color:purple"> ${cc} </span> User : <span style="color:purple"> ${uc} </span> = <span style="color:orange"> User Wins </span>`;
+            }
+       }
+        rock.addEventListener("click",function(){
+            game("rock"); 
+             });
+        
+        paper.addEventListener("click",function(){
+            game("paper");       
+             });
+        scissors.addEventListener("click",function(){
+            game("scissors");       
+             });
+        </script>
+    </body>
+</html>
